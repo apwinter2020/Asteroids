@@ -2,6 +2,7 @@ package main.java.Graphics;
 
 import main.java.Intefaces.Updatable;
 import main.java.Logic.GameState;
+import main.java.Util.Config;
 import main.java.Util.ImageLoader;
 import main.java.Util.Urls;
 
@@ -10,6 +11,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Properties;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -17,7 +19,6 @@ import java.util.TimerTask;
 public class GamePanel extends JPanel implements Updatable {
 
     private Drawer drawer;
-
 
 
     private Timer myTimer = new Timer();
@@ -38,11 +39,9 @@ public class GamePanel extends JPanel implements Updatable {
 
 
     private void init() {
-
         new GameAction(this);
 
-
-        this.configPanel();
+        this.configPanel(Config.ReadProperties(Urls.GAMEPANEL_CONFIG_FILE));
 
         this.myTimer.schedule(new TimerTask() {
             @Override
@@ -53,7 +52,7 @@ public class GamePanel extends JPanel implements Updatable {
         }, 1, 10);
     }
 
-    private void configPanel() {
+    private void configPanel(Properties properties) {
 
         try (Scanner input = new Scanner(new File(Urls.GAMEPANEL_CONFIG_FILE))) {
 
@@ -91,23 +90,32 @@ public class GamePanel extends JPanel implements Updatable {
         }
     }
 
-    private void bgImageUpdate() {
+    private void updateBackgroundImage() {
 
-        if (this.timeCounter % 100 == 0) {
-            this.coefficient *= -1;
-            this.timeCounter = 1;
-        }
+        this.repaint();
+        this.revalidate();
+
+        this.updateCounter();
 
         this.bgImageX += coefficient * this.bgImageSpeedX;
         this.bgImageY += coefficient * this.bgImageSpeedY;
 
+
+    }
+
+    private void updateCounter() {
+        if (timeCounter % 100 == 0) {
+            coefficient *= -1;
+            timeCounter = 1;
+        }
         this.timeCounter++;
     }
 
     @Override
     public void update() {
         GameState.getInstance().update();
-        this.bgImageUpdate();
+        this.updateBackgroundImage();
     }
+
 
 }

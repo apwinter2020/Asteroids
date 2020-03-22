@@ -1,10 +1,10 @@
 package main.java.Logic;
 
+import main.java.Util.Config;
 import main.java.Util.Urls;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.lang.reflect.Field;
+import java.util.Properties;
 
 public class Constants {
 
@@ -20,28 +20,17 @@ public class Constants {
 
 
     static {
-        Constants.configConstance();
+        Constants.configConstance(Config.ReadProperties(Urls.CONSTANCE_CONFIG_FILE));
     }
 
-    private static void configConstance() {
 
-        try (Scanner input = new Scanner(new File(Urls.CONSTANCE_CONFIG_FILE))) {
+    private static void configConstance(Properties properties) {
 
-            spaceShipSize = input.nextInt();
-            maxWidth = input.nextInt();
-            maxHeight = input.nextInt();
-            maxSpeed = input.nextInt();
-            minSpeed = input.nextInt();
-            maxSize = input.nextInt();
-            minSize = input.nextInt();
-            initialAsteroids = input.nextInt();
-            asteroidChance = input.nextInt();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        for (Field field : Constants.class.getFields()) {
+            Config.fieldInit(field, properties);
         }
 
-
     }
+
 
 }

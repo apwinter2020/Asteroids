@@ -37,8 +37,10 @@ class Drawer {
     }
 
     void drawAsteroids(Graphics2D graphics2D) {
-        for (Asteroid asteroid : GameState.getInstance().getAsteroidGroup().getAsteroids()) {
-            drawImage(graphics2D, asteroid);
+        synchronized (GameState.getInstance().getAsteroidGroup().getAsteroids()) {
+            for (Asteroid asteroid : GameState.getInstance().getAsteroidGroup().getAsteroids()) {
+                drawImage(graphics2D, asteroid);
+            }
         }
     }
 

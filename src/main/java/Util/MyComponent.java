@@ -41,7 +41,7 @@ public class MyComponent{
         return position;
     }
 
-    protected void setPosition(Vector2D position) {
+    public void setPosition(Vector2D position) {
         this.position = position;
     }
 

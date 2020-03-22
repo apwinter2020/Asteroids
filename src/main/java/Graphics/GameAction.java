@@ -1,10 +1,13 @@
 package main.java.Graphics;
 
 import main.java.Logic.GameState;
+import main.java.Logic.Mapper;
 import main.java.Util.Vector2D;
 
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 public class GameAction implements MouseMotionListener, MouseListener {
@@ -53,12 +56,12 @@ public class GameAction implements MouseMotionListener, MouseListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        GameState.getInstance().moveSpaceShip(new Vector2D(e.getX(), e.getY()));
+        Mapper.moveSpaceShip(new Vector2D(e.getX(), e.getY()), GameState.getInstance().getPlayer().getShip());
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        GameState.getInstance().moveSpaceShip(new Vector2D(e.getX(), e.getY()));
+        Mapper.moveSpaceShip(new Vector2D(e.getX(), e.getY()), GameState.getInstance().getPlayer().getShip());
     }
 
     private void hideCursor() {

@@ -1,18 +1,15 @@
 package main.java.Logic;
 
 import main.java.Intefaces.Updatable;
-import main.java.Models.*;
-import main.java.Util.Vector2D;
-
-import java.util.Iterator;
+import main.java.Models.AsteroidGroup;
+import main.java.Models.Player;
 
 public class GameState implements Updatable {
 
+    private static GameState ourInstance = new GameState();
     private Player player = new Player("", "", "");
-
     private boolean gameOver = false;
     private AsteroidGroup asteroidGroup = new AsteroidGroup();
-    private static GameState ourInstance = new GameState();
 
     public static GameState getInstance() {
         if (ourInstance == null) ourInstance = new GameState();
@@ -20,49 +17,17 @@ public class GameState implements Updatable {
     }
 
 
-    public void moveSpaceShip(Vector2D newPosition) {
-        this.player.getShip().getPosition().setY(newPosition.getY());
-        this.player.getShip().getPosition().setX(newPosition.getX());
-    }
-
-
     public Player getPlayer() {
         return player;
     }
 
-    //this method examined collision between spaceShip and asteroids
-    private void checkSpaceShipCollisions() {
-        SpaceShip spaceShip = this.getPlayer().getShip();
-
-        for (Asteroid asteroid : this.getAsteroidGroup().getAsteroids()) {
-            if (asteroid.getBox().intersects(spaceShip.getBox())) {
-                this.setGameOver(true);
-            }
-        }
-
-    }
-
-    //this method examined collision between spaceShip.bullets and asteroids
-    private void checkBulletsCollision() {
-
-        for (Iterator<Bullet> bulletIterator = this.getPlayer().getShip().getBullets().iterator(); bulletIterator.hasNext(); ) {
-            Bullet bullet = bulletIterator.next();
-
-            for (Iterator<Asteroid> asteroidIterator = this.getAsteroidGroup().getAsteroids().iterator(); asteroidIterator.hasNext(); ) {
-                Asteroid asteroid = asteroidIterator.next();
-
-                if (bullet.getBox().intersects(asteroid.getBox())) {
-                    asteroidIterator.remove();
-                    bulletIterator.remove();
-                }
-            }
-        }
-
-    }
 
     private void checkCollision() {
-        checkBulletsCollision();
-        checkSpaceShipCollisions();
+
+        Mapper.checkBulletsCollision(this.getPlayer().getShip(), this.getAsteroidGroup());
+        if (Mapper.checkSpaceShipCollisions(this.getPlayer().getShip(), this.getAsteroidGroup()))
+            this.setGameOver(true);
+
     }
 
     @Override

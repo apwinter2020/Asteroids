@@ -23,7 +23,7 @@ public class Player implements Serializable {
         this.password = password;
         this.id = id;
 
-        this.ship = new SpaceShip(new Vector2D(Constants.maxWidth / 2, Constants.maxHeight / 2 - 200));
+        this.ship = new SpaceShip(new Vector2D(Constants.maxWidth / 2 - 25, Constants.maxHeight / 2 + 200));
 
     }
 

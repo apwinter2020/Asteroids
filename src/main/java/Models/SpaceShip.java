@@ -26,4 +26,5 @@ public class SpaceShip extends MyComponent {
     public ArrayList<Bullet> getBullets() {
         return bullets;
     }
+
 }
