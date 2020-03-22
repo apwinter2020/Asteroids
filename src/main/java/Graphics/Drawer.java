@@ -5,19 +5,19 @@ import main.java.Logic.GameState;
 
 import java.awt.*;
 
-public class Drawer {
+class Drawer {
 
     private Graphics2D graphics2D;
 
-    public Drawer(Graphics2D graphics2D) {
+    Drawer(Graphics2D graphics2D) {
         setGraphics2D(graphics2D);
     }
 
-    public void setGraphics2D(Graphics2D graphics2D) {
+     private void setGraphics2D(Graphics2D graphics2D) {
         this.graphics2D = graphics2D;
     }
 
-    public void drawGameState(Graphics2D graphics2D) {
+    void drawGameState(Graphics2D graphics2D) {
 
         System.out.println("drawGameState");
 
@@ -26,12 +26,17 @@ public class Drawer {
         GameState.getInstance().getPlayer().getShip().paint(graphics2D);
     }
 
-    public void drawGameOver(Graphics2D graphics2D) {
+    void drawGameOver(Graphics2D graphics2D) {
         String prompt = "Game Over! :(";
         Font font = new Font("Helvetica", Font.BOLD, 50);
         FontMetrics fontMetrics = graphics2D.getFontMetrics(font);
         int width = fontMetrics.stringWidth(prompt);
+        graphics2D.setColor(Color.white);
         graphics2D.setFont(font);
         graphics2D.drawString(prompt, (Constants.maxWidth - width) / 2, (Constants.maxHeight - 50) / 2);
+    }
+
+    public Graphics2D getGraphics2D() {
+        return graphics2D;
     }
 }

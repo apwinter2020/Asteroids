@@ -1,19 +1,17 @@
 package main.java.Logic;
 
 import main.java.Intefaces.Updatable;
-import main.java.Models.Asteroid;
-import main.java.Models.AsteroidGroup;
-import main.java.Models.Player;
-import main.java.Models.Ship;
+import main.java.Models.*;
 import main.java.Util.Vector2D;
+
+import java.util.Iterator;
 
 public class GameState implements Updatable {
 
+    private static GameState ourInstance = new GameState();
     private Player player = new Player("", "", "");
     private AsteroidGroup asteroidGroup = new AsteroidGroup();
     private boolean gameOver = false;
-
-    private static GameState ourInstance = new GameState();
 
     public static GameState getInstance() {
         if (ourInstance == null) ourInstance = new GameState();
@@ -31,13 +29,39 @@ public class GameState implements Updatable {
         return player;
     }
 
-    private void checkCollisions() {
-        Ship spaceShip = getPlayer().getShip();
+    //this method examined collision between spaceShip and asteroids
+    private void checkSpaceShipCollisions() {
+        Ship spaceShip = this.getPlayer().getShip();
+
         for (Asteroid asteroid : this.getAsteroidGroup().getAsteroids()) {
             if (asteroid.getBox().intersects(spaceShip.getBox())) {
                 this.setGameOver(true);
             }
         }
+
+    }
+
+    //this method examined collision between spaceShip.bullets and asteroids
+    private void checkBulletsCollision() {
+
+        for (Iterator<Bullet> bulletIterator = this.getPlayer().getShip().getBullets().iterator(); bulletIterator.hasNext(); ) {
+            Bullet bullet = bulletIterator.next();
+
+            for (Iterator<Asteroid> asteroidIterator = this.getAsteroidGroup().getAsteroids().iterator(); asteroidIterator.hasNext(); ) {
+                Asteroid asteroid = asteroidIterator.next();
+
+                if (bullet.getBox().intersects(asteroid.getBox())) {
+                    asteroidIterator.remove();
+                    bulletIterator.remove();
+                }
+            }
+        }
+
+    }
+
+    private void checkCollision() {
+        checkBulletsCollision();
+        checkSpaceShipCollisions();
     }
 
     @Override
@@ -45,19 +69,19 @@ public class GameState implements Updatable {
         this.getAsteroidGroup().update();
         this.getPlayer().getShip().update();
 
-        this.checkCollisions();
+        this.checkCollision();
     }
 
     public boolean isGameOver() {
         return gameOver;
     }
 
-    public AsteroidGroup getAsteroidGroup() {
-        return asteroidGroup;
+    private void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
     }
 
-    public void setGameOver(boolean gameOver) {
-        this.gameOver = gameOver;
+    public AsteroidGroup getAsteroidGroup() {
+        return asteroidGroup;
     }
 }
 

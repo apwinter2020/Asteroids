@@ -30,7 +30,6 @@ public class Player implements Serializable {
 
         this.ship = new Ship(new Vector2D(Constants.maxWidth / 2, Constants.maxHeight / 2 - 200));
 
-//        JsonHandler.getInstance().serialize()
     }
 
     public Ship getShip() {

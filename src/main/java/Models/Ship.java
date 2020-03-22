@@ -22,7 +22,7 @@ public class Ship extends MyComponent implements Drawable, Updatable {
 
 
     public void shootBullet(Vector2D position) {
-        SoundPlayer.getInstance().play(Urls.RESOURCE_URL + "Sound\\laser.wav");
+        SoundPlayer.play(Urls.RESOURCE_URL + "Sound\\laser.wav");
 
         this.bullets.add(new Bullet(position));
     }
@@ -47,11 +47,7 @@ public class Ship extends MyComponent implements Drawable, Updatable {
         }
     }
 
-    @Override
-    public void move() {
-
-
+    public ArrayList<Bullet> getBullets() {
+        return bullets;
     }
-
-
 }

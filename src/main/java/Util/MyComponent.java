@@ -8,7 +8,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-public abstract class MyComponent implements Drawable, Movable {
+public  class MyComponent implements Drawable, Movable {
 
     private Vector2D position;
     private int size, speed;
@@ -46,7 +46,7 @@ public abstract class MyComponent implements Drawable, Movable {
         return position;
     }
 
-    public void setPosition(Vector2D position) {
+    protected void setPosition(Vector2D position) {
         this.position = position;
     }
 
@@ -78,6 +78,10 @@ public abstract class MyComponent implements Drawable, Movable {
             return new Rectangle2D.Float(position.getX(), position.getY(), size, size);
     }
 
+    @Override
+    public void move() {
+
+    }
 }
 
 
