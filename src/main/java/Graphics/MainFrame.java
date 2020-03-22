@@ -1,7 +1,5 @@
 package main.java.Graphics;
 
-import main.java.Models.Player;
-import main.java.Models.Ship;
 import main.java.Util.Urls;
 
 import javax.swing.*;

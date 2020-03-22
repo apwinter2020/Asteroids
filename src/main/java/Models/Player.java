@@ -1,7 +1,6 @@
 package main.java.Models;
 
 import main.java.Logic.Constants;
-import main.java.Util.MyComponent;
 import main.java.Util.Vector2D;
 
 import java.io.File;
@@ -15,11 +14,7 @@ public class Player implements Serializable {
 
     private File dataFile;
 
-    private Ship ship;
-
-    public Player(File dataFile) {
-
-    }
+    private SpaceShip ship;
 
 
     public Player(String username, String password, String id) {
@@ -28,11 +23,11 @@ public class Player implements Serializable {
         this.password = password;
         this.id = id;
 
-        this.ship = new Ship(new Vector2D(Constants.maxWidth / 2, Constants.maxHeight / 2 - 200));
+        this.ship = new SpaceShip(new Vector2D(Constants.maxWidth / 2, Constants.maxHeight / 2 - 200));
 
     }
 
-    public Ship getShip() {
+    public SpaceShip getShip() {
         return ship;
     }
 }

@@ -8,10 +8,11 @@ import java.util.Iterator;
 
 public class GameState implements Updatable {
 
-    private static GameState ourInstance = new GameState();
     private Player player = new Player("", "", "");
-    private AsteroidGroup asteroidGroup = new AsteroidGroup();
+
     private boolean gameOver = false;
+    private AsteroidGroup asteroidGroup = new AsteroidGroup();
+    private static GameState ourInstance = new GameState();
 
     public static GameState getInstance() {
         if (ourInstance == null) ourInstance = new GameState();
@@ -31,7 +32,7 @@ public class GameState implements Updatable {
 
     //this method examined collision between spaceShip and asteroids
     private void checkSpaceShipCollisions() {
-        Ship spaceShip = this.getPlayer().getShip();
+        SpaceShip spaceShip = this.getPlayer().getShip();
 
         for (Asteroid asteroid : this.getAsteroidGroup().getAsteroids()) {
             if (asteroid.getBox().intersects(spaceShip.getBox())) {
@@ -66,9 +67,7 @@ public class GameState implements Updatable {
 
     @Override
     public void update() {
-        this.getAsteroidGroup().update();
-        this.getPlayer().getShip().update();
-
+        Update.getInstance().update();
         this.checkCollision();
     }
 

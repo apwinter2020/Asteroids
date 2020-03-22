@@ -1,12 +1,10 @@
 package main.java.Models;
 
+import main.java.Intefaces.Movable;
 import main.java.Util.MyComponent;
 import main.java.Util.Vector2D;
 
-import java.awt.*;
-
-public class Asteroid extends MyComponent {
-
+public class Asteroid extends MyComponent implements Movable {
 
     public Asteroid(Vector2D position, int size, int speed, String componentName) {
         super(position, size, speed, componentName);

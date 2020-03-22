@@ -1,14 +1,9 @@
 package main.java.Util;
 
-import main.java.Intefaces.Drawable;
-import main.java.Intefaces.Movable;
-
-import java.awt.*;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-public  class MyComponent implements Drawable, Movable {
+public class MyComponent {
 
     private Vector2D position;
     private int size, speed;
@@ -35,12 +30,6 @@ public  class MyComponent implements Drawable, Movable {
     private void init() {
         this.image = ImageLoader.getInstance().loadImage("image\\" + this.componentName + ".png");
     }
-
-    @Override
-    public void paint(Graphics g) {
-        g.drawImage(this.image, this.position.getX(), this.position.getY(), this.getSize(), this.getSize(), null);
-    }
-
 
     public Vector2D getPosition() {
         return position;
@@ -75,13 +64,9 @@ public  class MyComponent implements Drawable, Movable {
     }
 
     public Rectangle2D getBox() {
-            return new Rectangle2D.Float(position.getX(), position.getY(), size, size);
+        return new Rectangle2D.Float(position.getX(), position.getY(), size, size);
     }
 
-    @Override
-    public void move() {
-
-    }
 }
 
 
