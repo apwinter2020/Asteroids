@@ -13,7 +13,7 @@ public class SpaceShip extends MyComponent {
 
 
     public SpaceShip(Vector2D position) {
-        super(position, 50, 5, "spaceship");
+        super(position, 50, 5, 5, "spaceship");
     }
 
 

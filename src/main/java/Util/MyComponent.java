@@ -3,21 +3,22 @@ package main.java.Util;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-public class MyComponent {
+public class MyComponent{
 
     private Vector2D position;
-    private int size, speed;
+    private int size, speedX, speedY;
 
 
     private String componentName;
 
     private BufferedImage image;
 
-    public MyComponent(Vector2D position, int size, int speed, String componentName) {
+    public MyComponent(Vector2D position, int size, int speedX, int speedY, String componentName) {
         this(position, componentName);
 
         this.size = size;
-        this.speed = speed;
+        this.speedY = speedY;
+        this.speedX = speedX;
     }
 
     public MyComponent(Vector2D position, String componentName) {
@@ -29,6 +30,11 @@ public class MyComponent {
 
     private void init() {
         this.image = ImageLoader.getInstance().loadImage("image\\" + this.componentName + ".png");
+    }
+
+
+    public void move() {
+        this.setPosition(new Vector2D(this.getPosition().getX() + this.getSpeedX(), this.getPosition().getY() + this.getSpeedY()));
     }
 
     public Vector2D getPosition() {
@@ -43,24 +49,16 @@ public class MyComponent {
         return size;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public int getSpeedX() {
+        return speedX;
     }
 
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public int getSpeedY() {
+        return speedY;
     }
 
     public BufferedImage getImage() {
         return image;
-    }
-
-    public void setImage(BufferedImage image) {
-        this.image = image;
     }
 
     public Rectangle2D getBox() {

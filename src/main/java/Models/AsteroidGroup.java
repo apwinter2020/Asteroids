@@ -1,6 +1,5 @@
 package main.java.Models;
 
-import main.java.Intefaces.Movable;
 import main.java.Logic.Constants;
 import main.java.Util.AsteroidFactory;
 

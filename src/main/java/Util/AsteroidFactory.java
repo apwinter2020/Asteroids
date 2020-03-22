@@ -16,8 +16,8 @@ public class AsteroidFactory {
         int x = random.nextInt(Constants.maxWidth - Constants.maxSize);
         int size = random.nextInt(Constants.maxSize - Constants.minSize) + Constants.minSize;
         int y = -size;
-        int speed = random.nextInt(Constants.maxSpeed - Constants.minSpeed) + Constants.minSpeed;
-        return new Asteroid(new Vector2D(x, y), size, speed, "asteroid");
+        int speedY = random.nextInt(Constants.maxSpeed - Constants.minSpeed) + Constants.minSpeed;
+        return new Asteroid(new Vector2D(x, y), size, 0, speedY, "asteroid");
     }
 
 }
