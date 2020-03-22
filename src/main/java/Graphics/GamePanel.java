@@ -2,8 +2,6 @@ package main.java.Graphics;
 
 import main.java.Intefaces.Updatable;
 import main.java.Logic.GameState;
-import main.java.Models.AsteroidGroup;
-import main.java.Models.Player;
 import main.java.Util.ImageLoader;
 import main.java.Util.Urls;
 
@@ -12,7 +10,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.IllegalFormatCodePointException;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -20,6 +17,7 @@ import java.util.TimerTask;
 public class GamePanel extends JPanel implements Updatable {
 
     private Drawer drawer;
+
 
 
     private Timer myTimer = new Timer();
@@ -78,26 +76,22 @@ public class GamePanel extends JPanel implements Updatable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        g.drawImage(this.bgImage, this.bgImageX, this.bgImageY, null);
-
-        if (drawer == null) drawer = new Drawer((Graphics2D) g);
-
-        if (GameState.getInstance().isGameOver()) {
-            drawer.drawGameOver((Graphics2D) g);
-        } else {
-            drawer.drawGameState((Graphics2D) g);
-        }
-
+        this.paintGamePanel((Graphics2D) g);
     }
 
-    @Override
-    public void update() {
+    private void paintGamePanel(Graphics2D graphics2D) {
+        graphics2D.drawImage(this.bgImage, this.bgImageX, this.bgImageY, null);
 
-        GameState.getInstance().update();
+        if (drawer == null) drawer = new Drawer(graphics2D);
 
-        this.revalidate();
-        this.repaint();
+        if (GameState.getInstance().isGameOver()) {
+            drawer.drawGameOver(graphics2D);
+        } else {
+            drawer.drawGameState(graphics2D);
+        }
+    }
+
+    private void bgImageUpdate() {
 
         if (this.timeCounter % 100 == 0) {
             this.coefficient *= -1;
@@ -108,6 +102,12 @@ public class GamePanel extends JPanel implements Updatable {
         this.bgImageY += coefficient * this.bgImageSpeedY;
 
         this.timeCounter++;
+    }
+
+    @Override
+    public void update() {
+        GameState.getInstance().update();
+        this.bgImageUpdate();
     }
 
 }

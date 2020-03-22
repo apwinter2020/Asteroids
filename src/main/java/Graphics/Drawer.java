@@ -17,10 +17,6 @@ class Drawer {
         setGraphics2D(graphics2D);
     }
 
-     private void setGraphics2D(Graphics2D graphics2D) {
-        this.graphics2D = graphics2D;
-    }
-
     void drawGameState(Graphics2D graphics2D) {
         drawAsteroids(graphics2D);
         drawSpaceShip(graphics2D);
@@ -43,7 +39,6 @@ class Drawer {
     void drawAsteroids(Graphics2D graphics2D) {
         for (Asteroid asteroid : GameState.getInstance().getAsteroidGroup().getAsteroids()) {
             drawImage(graphics2D, asteroid);
-
         }
     }
 
@@ -57,12 +52,16 @@ class Drawer {
         graphics2D.drawString(prompt, (Constants.maxWidth - width) / 2, (Constants.maxHeight - 50) / 2);
     }
 
-    void drawImage(Graphics2D graphics2D,MyComponent component) {
+    void drawImage(Graphics2D graphics2D, MyComponent component) {
         graphics2D.drawImage(component.getImage(), component.getPosition().getX(), component.getPosition().getY(), component.getSize(), component.getSize(), null);
     }
 
     public Graphics2D getGraphics2D() {
         return graphics2D;
+    }
+
+    private void setGraphics2D(Graphics2D graphics2D) {
+        this.graphics2D = graphics2D;
     }
 }
 
