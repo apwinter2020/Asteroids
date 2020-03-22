@@ -1,18 +1,20 @@
 package main.java.Logic;
 
+import main.java.Intefaces.Updatable;
 import main.java.Models.Asteroid;
 import main.java.Models.Bullet;
 
-public class Update {
+public class Update implements Updatable {
 
     private static Update ourInstance = new Update();
 
-    public static Update getInstance() {
+    static Update getInstance() {
         return ourInstance;
     }
 
 
-    void update() {
+    @Override
+    public void update() {
         updateAsteroidGroup();
         updateBullets();
     }
