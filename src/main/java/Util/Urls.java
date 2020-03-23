@@ -8,6 +8,4 @@ public class Urls {
     public static final String CONSTANCE_CONFIG_FILE = "resources\\configFiles\\LogicConfigFiles\\ConstantsConfigFile";
 
 
-
-
 }

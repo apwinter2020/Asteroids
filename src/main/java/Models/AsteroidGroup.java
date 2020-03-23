@@ -1,32 +1,24 @@
 package main.java.Models;
 
-import main.java.Logic.Constants;
 import main.java.Util.AsteroidFactory;
-
-import java.util.ArrayList;
-import java.util.Random;
+import main.java.Util.ObjectPool;
 
 public class AsteroidGroup  {
 
-    private final AsteroidFactory asteroidFactory = new AsteroidFactory();
+    AsteroidFactory asteroidFactory = new AsteroidFactory();
 
-    private final ArrayList<Asteroid> asteroids = new ArrayList<>();
-
-    private final Random random = new Random();
-
-
-    public void makeAsteroid() {
-        synchronized (this.asteroids) {
-            int chance = random.nextInt(100);
-            if (chance <= Constants.asteroidChance) {
-                asteroids.add(asteroidFactory.makeAsteroid());
-            }
+    ObjectPool<Asteroid> asteroidPool = new ObjectPool<Asteroid>(100) {
+        @Override
+        public Asteroid createNew() {
+            return AsteroidGroup.this.asteroidFactory.createNew();
         }
+    };
+
+
+    public ObjectPool<Asteroid> getAsteroidPool() {
+        return asteroidPool;
     }
 
-    public ArrayList<Asteroid> getAsteroids() {
-        return asteroids;
-    }
 }
 
 

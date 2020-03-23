@@ -3,37 +3,44 @@ package main.java.Logic;
 import main.java.Intefaces.Updatable;
 import main.java.Models.AsteroidGroup;
 import main.java.Models.Player;
-import main.java.Models.SpaceShip;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameState implements Updatable {
 
-    private static GameState ourInstance = new GameState();
-    private Player player = new Player("", "", "");
+    private Player player;
+    private AsteroidGroup asteroidGroup;
+
+    private Timer updateTimer = new Timer();
+
     private boolean gameOver = false;
-    private AsteroidGroup asteroidGroup = new AsteroidGroup();
 
-    public static GameState getInstance() {
-        if (ourInstance == null) ourInstance = new GameState();
-        return ourInstance;
+    public GameState() {
+        this.player = new Player("", "", "");
+        this.asteroidGroup = new AsteroidGroup();
+
+        this.updateTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                GameState.this.update();
+            }
+        }, 100, 60);
     }
-
-
-    public Player getPlayer() {
-        return player;
-    }
-
 
     private void checkCollision() {
 
         Mapper.checkBulletsCollision(this.getPlayer().getShip(), this.getAsteroidGroup());
-        if (Mapper.checkSpaceShipCollisions(this.getPlayer().getShip(), this.getAsteroidGroup()))
+        if (Mapper.checkSpaceShipCollisions(this.getPlayer().getShip(), this.getAsteroidGroup().getAsteroidPool()))
             this.setGameOver(true);
 
     }
 
     @Override
     public void update() {
-        Update.getInstance().update();
+        Update.updateAsteroidGroup(this.getAsteroidGroup().getAsteroidPool());
+        Update.updateBullets(this.getPlayer().getShip().getBullets());
+
         this.checkCollision();
     }
 
@@ -47,6 +54,10 @@ public class GameState implements Updatable {
 
     public AsteroidGroup getAsteroidGroup() {
         return asteroidGroup;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }
 

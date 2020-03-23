@@ -1,10 +1,12 @@
 package main.java.Logic;
 
-import main.java.Intefaces.Updatable;
 import main.java.Models.Asteroid;
 import main.java.Models.Bullet;
+import main.java.Util.ObjectPool;
 
-public class Update implements Updatable {
+import java.util.ArrayList;
+
+public class Update  {
 
     private static Update ourInstance = new Update();
 
@@ -13,23 +15,16 @@ public class Update implements Updatable {
     }
 
 
-    @Override
-    public void update() {
-        updateAsteroidGroup();
-        updateBullets();
-    }
+    public static void updateAsteroidGroup(ObjectPool<Asteroid> objectPool) {
 
-
-    private void updateAsteroidGroup() {
-        GameState.getInstance().getAsteroidGroup().makeAsteroid();
-
-        for (Asteroid asteroid : GameState.getInstance().getAsteroidGroup().getAsteroids()) {
+        for (Asteroid asteroid : objectPool.getPool()) {
             asteroid.move();
         }
+
     }
 
-    private void updateBullets() {
-        for (Bullet bullet : GameState.getInstance().getPlayer().getShip().getBullets()) {
+    public static void updateBullets(ArrayList<Bullet> bullets) {
+        for (Bullet bullet : bullets) {
             bullet.move();
         }
     }

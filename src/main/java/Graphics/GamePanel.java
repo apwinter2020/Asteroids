@@ -1,7 +1,7 @@
 package main.java.Graphics;
 
 import main.java.Intefaces.Updatable;
-import main.java.Logic.GameState;
+import main.java.Logic.Mapper;
 import main.java.Util.ImageLoader;
 import main.java.Util.Urls;
 
@@ -19,6 +19,7 @@ public class GamePanel extends JPanel implements Updatable {
     private Drawer drawer;
 
 
+    private Mapper mapper = new Mapper();
     private Timer myTimer = new Timer();
     private BufferedImage bgImage;
 
@@ -40,14 +41,13 @@ public class GamePanel extends JPanel implements Updatable {
         new GameAction(this);
 
         this.configPanel();
-
         this.myTimer.schedule(new TimerTask() {
             @Override
             public void run() {
                 GamePanel.this.update();
 
             }
-        }, 1, 10);
+        }, 100, 60);
     }
 
     private void configPanel() {
@@ -81,10 +81,10 @@ public class GamePanel extends JPanel implements Updatable {
 
         if (drawer == null) drawer = new Drawer(graphics2D);
 
-        if (GameState.getInstance().isGameOver()) {
+        if (this.mapper.isGameOver()) {
             drawer.drawGameOver(graphics2D);
         } else {
-            drawer.drawGameState(graphics2D);
+            drawer.drawGameState(graphics2D,this.mapper.getAsteroids(),this.mapper.getSpaceShip());
         }
     }
 
@@ -111,7 +111,6 @@ public class GamePanel extends JPanel implements Updatable {
 
     @Override
     public void update() {
-        GameState.getInstance().update();
         this.updateBackgroundImage();
     }
 

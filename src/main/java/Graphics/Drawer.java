@@ -1,11 +1,11 @@
 package main.java.Graphics;
 
 import main.java.Logic.Constants;
-import main.java.Logic.GameState;
 import main.java.Models.Asteroid;
 import main.java.Models.Bullet;
 import main.java.Models.SpaceShip;
 import main.java.Util.MyComponent;
+import main.java.Util.ObjectPool;
 
 import java.awt.*;
 
@@ -17,14 +17,12 @@ class Drawer {
         setGraphics2D(graphics2D);
     }
 
-    void drawGameState(Graphics2D graphics2D) {
-        drawAsteroids(graphics2D);
-        drawSpaceShip(graphics2D);
+    void drawGameState(Graphics2D graphics2D, ObjectPool<Asteroid> asteroidPool, SpaceShip spaceShip) {
+        drawAsteroids(graphics2D,asteroidPool);
+        drawSpaceShip(graphics2D, spaceShip);
     }
 
-    void drawSpaceShip(Graphics2D graphics2D) {
-
-        SpaceShip spaceShip = GameState.getInstance().getPlayer().getShip();
+    void drawSpaceShip(Graphics2D graphics2D, SpaceShip spaceShip) {
 
         //this line draw space ship
         drawImage(graphics2D, spaceShip);
@@ -36,11 +34,9 @@ class Drawer {
 
     }
 
-    void drawAsteroids(Graphics2D graphics2D) {
-        synchronized (GameState.getInstance().getAsteroidGroup().getAsteroids()) {
-            for (Asteroid asteroid : GameState.getInstance().getAsteroidGroup().getAsteroids()) {
-                drawImage(graphics2D, asteroid);
-            }
+    void drawAsteroids(Graphics2D graphics2D, ObjectPool<Asteroid> asteroidPool) {
+        for (Asteroid asteroid : asteroidPool.getPool()) {
+            drawImage(graphics2D, asteroid);
         }
     }
 
