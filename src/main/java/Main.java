@@ -10,7 +10,6 @@ public class Main {
 
         MainFrame mainFrame = new MainFrame(new GamePanel());
 
-        System.out.println(Constants.minSpeed);
     }
 
 }

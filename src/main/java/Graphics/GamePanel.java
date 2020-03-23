@@ -2,7 +2,6 @@ package main.java.Graphics;
 
 import main.java.Intefaces.Updatable;
 import main.java.Logic.GameState;
-import main.java.Util.Config;
 import main.java.Util.ImageLoader;
 import main.java.Util.Urls;
 
@@ -11,7 +10,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Properties;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -41,7 +39,7 @@ public class GamePanel extends JPanel implements Updatable {
     private void init() {
         new GameAction(this);
 
-        this.configPanel(Config.ReadProperties(Urls.GAMEPANEL_CONFIG_FILE));
+        this.configPanel();
 
         this.myTimer.schedule(new TimerTask() {
             @Override
@@ -52,7 +50,7 @@ public class GamePanel extends JPanel implements Updatable {
         }, 1, 10);
     }
 
-    private void configPanel(Properties properties) {
+    private void configPanel() {
 
         try (Scanner input = new Scanner(new File(Urls.GAMEPANEL_CONFIG_FILE))) {
 
