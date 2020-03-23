@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 spaceShipSize=50
 maxWidth=1200
 maxHeight=800
@@ -8,14 +7,3 @@ maxSize=50
 minSize=25
 initialAsteroids=50
 asteroidChance=5
-=======
-spaceShipSize=50
-maxWidth=1200
-maxHeight=800
-maxSpeed=5
-minSpeed=2
-maxSize=50
-minSize=25
-initialAsteroids=50
-asteroidChance=5
->>>>>>> github/master
