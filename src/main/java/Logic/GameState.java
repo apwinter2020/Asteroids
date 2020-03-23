@@ -3,6 +3,7 @@ package main.java.Logic;
 import main.java.Intefaces.Updatable;
 import main.java.Models.AsteroidGroup;
 import main.java.Models.Player;
+import main.java.Models.SpaceShip;
 
 public class GameState implements Updatable {
 

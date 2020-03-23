@@ -18,16 +18,17 @@ public class Constants {
     public static int maxSize;
     public static int minSize;
 
+    private Config configConstants = new Config();
 
-    static {
-        Constants.configConstance(Config.ReadProperties(Urls.CONSTANCE_CONFIG_FILE));
+    {
+        this.configConstance(this.configConstants.ReadProperties(Urls.CONSTANCE_CONFIG_FILE));
     }
 
 
-    private static void configConstance(Properties properties) {
+    private void configConstance(Properties properties) {
 
         for (Field field : Constants.class.getFields()) {
-            Config.fieldInit(field, properties);
+            this.configConstants.fieldInit(field, properties);
         }
 
     }

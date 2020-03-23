@@ -10,8 +10,12 @@ import java.util.Iterator;
 
 public class Mapper {
 
-    public static void moveSpaceShip(Vector2D newPosition, SpaceShip spaceShip) {
-        spaceShip.setPosition(new Vector2D(newPosition.getX(), newPosition.getY()));
+    public static void shootBullet(Vector2D position) {
+        GameState.getInstance().getPlayer().getShip().shootBullet(position);
+    }
+
+    public static void moveSpaceShip(Vector2D newPosition) {
+        GameState.getInstance().getPlayer().getShip().setPosition(new Vector2D(newPosition.getX(), newPosition.getY()));
     }
 
     //this method examined collision between spaceShip and asteroids

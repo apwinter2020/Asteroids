@@ -36,7 +36,7 @@ public class GameAction implements MouseMotionListener, MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        GameState.getInstance().getPlayer().getShip().shootBullet(new Vector2D(e.getX(), e.getY()));
+        Mapper.shootBullet(new Vector2D(e.getX(), e.getY()));
     }
 
     @Override
@@ -56,12 +56,12 @@ public class GameAction implements MouseMotionListener, MouseListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        Mapper.moveSpaceShip(new Vector2D(e.getX(), e.getY()), GameState.getInstance().getPlayer().getShip());
+        Mapper.moveSpaceShip(new Vector2D(e.getX(), e.getY()));
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        Mapper.moveSpaceShip(new Vector2D(e.getX(), e.getY()), GameState.getInstance().getPlayer().getShip());
+        Mapper.moveSpaceShip(new Vector2D(e.getX(), e.getY()));
     }
 
     private void hideCursor() {
