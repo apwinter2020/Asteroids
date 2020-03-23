@@ -18,7 +18,7 @@ public class Constants {
     public static int maxSize;
     public static int minSize;
 
-    private static Config configConstants = new  Config();
+    private static Config configConstants = new Config();
 
     static {
         configConstance(configConstants.ReadProperties(Urls.CONSTANCE_CONFIG_FILE));
