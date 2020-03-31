@@ -7,3 +7,4 @@ maxSize=50
 minSize=25
 initialAsteroids=50
 asteroidChance=5
+asteroidNumber=100

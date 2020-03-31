@@ -1,4 +1,5 @@
-1200 800
-3
-false
-false
+width=1200
+height=800
+CloseOperation=3
+Resizable=false
+Undecorated=false

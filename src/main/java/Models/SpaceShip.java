@@ -11,8 +11,8 @@ public class SpaceShip extends MyComponent {
     private BulletsObjectPool bulletsObjectPool;
 
 
-    public SpaceShip(Vector2D position) {
-        super(position, 50, 10, 10, "spaceship");
+    SpaceShip(Vector2D position) {
+        super(position, 50, 5, 5, "spaceship");
     }
 
 
