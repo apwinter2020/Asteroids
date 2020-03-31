@@ -1,67 +1,30 @@
 package main.java.Graphics;
 
-import main.java.Logic.GameState;
+import main.java.Intefaces.Request;
 import main.java.Logic.Mapper;
-import main.java.Util.Vector2D;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
-public class GameAction implements MouseMotionListener, MouseListener {
+public class GameAction implements KeyListener {
 
     private final GamePanel gamePanel;
+    private final Mapper mapper;
 
-    public GameAction(GamePanel gamePanel) {
+
+    public GameAction(GamePanel gamePanel, Mapper mapper) {
         this.gamePanel = gamePanel;
+        this.mapper = mapper;
         this.init();
     }
 
     private void init() {
 
-        this.hideCursor();
+        gamePanel.addKeyListener(this);
+        hideCursor();
 
-        this.gamePanel.addMouseListener(this);
-        this.gamePanel.addMouseMotionListener(this);
-
-    }
-
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        Mapper.shootBullet(new Vector2D(e.getX(), e.getY()));
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        Mapper.moveSpaceShip(new Vector2D(e.getX(), e.getY()));
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        Mapper.moveSpaceShip(new Vector2D(e.getX(), e.getY()));
     }
 
     private void hideCursor() {
@@ -73,4 +36,44 @@ public class GameAction implements MouseMotionListener, MouseListener {
 
         this.gamePanel.setCursor(cursor);
     }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    private Request createRequest(KeyEvent e) {
+        Request request = null;
+
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_SPACE:
+                request = Mapper.RequestType.SPACESHIP_SHOOT_BULLET;
+                break;
+            case KeyEvent.VK_LEFT:
+                request = Mapper.RequestType.SPACESHIP_MOVE_LEFT;
+                break;
+            case KeyEvent.VK_RIGHT:
+                request = Mapper.RequestType.SPACESHIP_MOVE_RIGHT;
+                break;
+            case KeyEvent.VK_DOWN:
+                request = Mapper.RequestType.SPACESHIP_MOVE_DOWN;
+                break;
+            case KeyEvent.VK_UP:
+                request = Mapper.RequestType.SPACESHIP_MOVE_UP;
+                break;
+        }
+        return request;
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println(e.getWhen());
+        mapper.addRequest((Mapper.RequestType) createRequest(e));
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+
 }

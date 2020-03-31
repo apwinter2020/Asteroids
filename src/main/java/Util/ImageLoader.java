@@ -16,7 +16,7 @@ public class ImageLoader {
     public BufferedImage loadImage(String imageName) {
         BufferedImage image = null;
         try {
-            image = ImageIO.read(new File(Urls.RESOURCE_URL + imageName));
+            image = ImageIO.read(new File(ConfigLoader.getInstance("default").getAddress("RESOURCE_URL") + imageName));
         } catch (IOException e) {
             e.printStackTrace();
         }
