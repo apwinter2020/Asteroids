@@ -1,31 +1,32 @@
 package main.java.Graphics;
 
 //import main.java.Util.Constants;
+
 import main.java.Logic.GameState;
 import main.java.Models.Asteroid;
 import main.java.Models.Bullet;
 import main.java.Models.MyComponent;
 import main.java.Models.SpaceShip;
 import main.java.Util.ConfigLoader;
-import main.java.Util.IntegerProperties;
+import main.java.Util.GameConstants;
 
 import java.awt.*;
 import java.util.List;
 
 
 class Drawer {
-    private IntegerProperties constants;
+    private GameConstants constants;
 
     private Graphics2D graphics2D;
 
     public Drawer(Graphics2D graphics2D) {
         setGraphics2D(graphics2D);
-        constants = ConfigLoader.getInstance("default").getProperties("Constants");
+        constants = GameConstants.getInstance();
     }
 
     void drawGameState(GameState gameState) {
         drawAsteroids(gameState.getAsteroids());
-        drawSpaceShip(gameState.getPlayer().getSpaceShip(),gameState.getBullets());
+        drawSpaceShip(gameState.getPlayer().getSpaceShip(), gameState.getBullets());
     }
 
     private void drawSpaceShip(SpaceShip spaceShip, List<Bullet> bullets) {
@@ -53,7 +54,7 @@ class Drawer {
         int width = fontMetrics.stringWidth(prompt);
         graphics2D.setColor(Color.white);
         graphics2D.setFont(font);
-        graphics2D.drawString(prompt, (constants.readInteger("maxWidth") - width) / 2, (constants.readInteger("maxHeight") - 50) / 2);
+        graphics2D.drawString(prompt, (constants.getConstant("maxWidth") - width) / 2, (constants.getConstant("maxHeight") - 50) / 2);
     }
 
     private void drawImage(MyComponent component) {
