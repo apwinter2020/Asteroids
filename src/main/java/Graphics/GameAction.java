@@ -18,9 +18,9 @@ public class GameAction implements KeyListener {
     private final Mapper mapper;
 
 
-    GameAction(GamePanel gamePanel, Mapper mapper) {
+    GameAction(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        this.mapper = mapper;
+        this.mapper = Mapper.getInstance();
         this.init();
     }
 

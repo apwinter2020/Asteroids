@@ -7,15 +7,14 @@ import main.java.Util.AsteroidsObjectPool;
 import main.java.Util.BulletsObjectPool;
 import main.java.Util.ConfigLoader;
 import main.java.Util.IntegerProperties;
-//import main.java.Util.Constants;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Properties;
+
+//import main.java.Util.Constants;
 
 public class GameState {
-    private static GameState gameState;
 
     private Player player;
     private AsteroidsObjectPool asteroidsObjectPool;
@@ -29,7 +28,7 @@ public class GameState {
 
     private boolean gameOver = false;
 
-    private GameState() {
+    public GameState() {
         this.player = new Player("", "", "");
         constants = ConfigLoader.getInstance("default").getProperties("Constants");
 
@@ -44,10 +43,6 @@ public class GameState {
         player.getSpaceShip().setBulletsObjectPool(bulletsObjectPool);
     }
 
-    public static GameState getInstance() {
-        if (gameState == null) gameState = new GameState();
-        return gameState;
-    }
 
     public boolean isGameOver() {
         return gameOver;

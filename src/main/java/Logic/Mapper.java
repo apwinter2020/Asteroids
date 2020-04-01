@@ -9,14 +9,16 @@ import java.util.Iterator;
 
 public class Mapper {
 
+    private static Mapper instance = new Mapper();
+
 
     private static GameState gameState;
     private ArrayList<Request> requests;
 
 
-    public Mapper() {
-        gameState = GameState.getInstance();
+    private Mapper() {
         requests = new ArrayList<>();
+        gameState = new GameState();
     }
 
     private static void moveSpaceShip(Vector2D newPosition) {
@@ -97,4 +99,11 @@ public class Mapper {
 
     }
 
+    public static GameState getGameState() {
+        return gameState;
+    }
+
+    public static Mapper getInstance() {
+        return instance;
+    }
 }

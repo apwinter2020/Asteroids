@@ -5,6 +5,7 @@ import main.java.Logic.GameState;
 import main.java.Models.Asteroid;
 import main.java.Models.Bullet;
 import main.java.Models.MyComponent;
+import main.java.Models.SpaceShip;
 import main.java.Util.ConfigLoader;
 import main.java.Util.IntegerProperties;
 
@@ -16,34 +17,31 @@ class Drawer {
     private IntegerProperties constants;
 
     private Graphics2D graphics2D;
-    private GameState gameState;
 
     public Drawer(Graphics2D graphics2D) {
-        gameState = GameState.getInstance();
         setGraphics2D(graphics2D);
         constants = ConfigLoader.getInstance("default").getProperties("Constants");
     }
 
-    void drawGameState() {
-        drawAsteroids();
-        drawSpaceShip();
+    void drawGameState(GameState gameState) {
+        drawAsteroids(gameState.getAsteroids());
+        drawSpaceShip(gameState.getPlayer().getSpaceShip(),gameState.getBullets());
     }
 
-    void drawSpaceShip() {
+    private void drawSpaceShip(SpaceShip spaceShip, List<Bullet> bullets) {
 
         //this line draw space ship
-        drawImage(gameState.getPlayer().getSpaceShip());
+        drawImage(spaceShip);
 
         //this loop draw spaceship.bullets
-        List<Bullet> bullets = gameState.getBullets();
         for (Bullet bullet : bullets) {
             drawImage(bullet);
         }
 
     }
 
-    void drawAsteroids() {
-        for (Asteroid asteroid : gameState.getAsteroids()) {
+    private void drawAsteroids(List<Asteroid> asteroids) {
+        for (Asteroid asteroid : asteroids) {
             drawImage(asteroid);
         }
     }
@@ -58,7 +56,7 @@ class Drawer {
         graphics2D.drawString(prompt, (constants.readInteger("maxWidth") - width) / 2, (constants.readInteger("maxHeight") - 50) / 2);
     }
 
-    void drawImage(MyComponent component) {
+    private void drawImage(MyComponent component) {
         graphics2D.drawImage(component.getImage(), component.getPosition().getX(), component.getPosition().getY(),
                 component.getSize(), component.getSize(), null);
     }
@@ -67,7 +65,7 @@ class Drawer {
         return graphics2D;
     }
 
-    public void setGraphics2D(Graphics2D graphics2D) {
+    void setGraphics2D(Graphics2D graphics2D) {
         this.graphics2D = graphics2D;
     }
 }

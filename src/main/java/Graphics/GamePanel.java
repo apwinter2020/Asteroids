@@ -1,7 +1,6 @@
 package main.java.Graphics;
 
 import main.java.Intefaces.Updatable;
-import main.java.Logic.GameState;
 import main.java.Logic.Mapper;
 import main.java.Logic.Updater;
 import main.java.Util.ConfigLoader;
@@ -18,7 +17,6 @@ import java.util.Properties;
 public class GamePanel extends JPanel implements Updatable {
 
     private Drawer drawer;
-    private GameState gameState;
     private Updater updater;
     private Mapper mapper;
     private GameAction gameAction;
@@ -41,11 +39,9 @@ public class GamePanel extends JPanel implements Updatable {
 
     private void init() {
         updater = new Updater();
-        mapper = new Mapper();
-        gameState = GameState.getInstance();
-        gameAction = new GameAction(this, mapper);
+        mapper = Mapper.getInstance();
+        gameAction = new GameAction(this);
         configurePanel();
-
     }
 
     private void start() {
@@ -56,7 +52,6 @@ public class GamePanel extends JPanel implements Updatable {
             }
         });
         t.start();
-
     }
 
     private void configurePanel() {
@@ -87,10 +82,10 @@ public class GamePanel extends JPanel implements Updatable {
     private void paintGamePanel(Graphics2D graphics2D) {
         graphics2D.drawImage(this.bgImage, this.bgImageX, this.bgImageY, null);
 
-        if (gameState.isGameOver()) {
+        if (Mapper.getGameState().isGameOver()) {
             drawer.drawGameOver();
         } else {
-            drawer.drawGameState();
+            drawer.drawGameState(Mapper.getGameState());
         }
     }
 
@@ -111,8 +106,8 @@ public class GamePanel extends JPanel implements Updatable {
 
     @Override
     public void update() {
-        mapper.executeRequests();
         updateBackgroundImage();
+        mapper.executeRequests();
         updater.update();
     }
 
