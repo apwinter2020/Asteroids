@@ -1,69 +1,41 @@
 package main.java.Util;
 
-import main.java.Intefaces.ObjectFactory;
-import main.java.Intefaces.Pool;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
+public abstract class ObjectPool<T> {
 
-public abstract class ObjectPool<T> implements ObjectFactory<T>, Pool<T> {
 
-    private int size;
+    private Set<T> available = new HashSet<>();
+    private List<T> inUse;
 
-    private boolean shutdown;
+    public ObjectPool(List<T> inUse) {
+        this.inUse = inUse;
 
-    private BlockingQueue<T> pool;
-
-    public ObjectPool(int size) {
-        this.size = size;
-        shutdown = false;
-        init();
     }
 
-    private void init() {
-        pool = new LinkedBlockingQueue<T>();
-        for (int i = 0; i < size; i++) {
-            T t = createNew();
-            pool.add(t);
+    protected abstract T create();
+
+
+    public synchronized T checkOut() {
+        if (available.isEmpty()) {
+            available.add(create());
         }
+        T instance = available.iterator().next();
+        available.remove(instance);
+        synchronized (inUse) {
+            inUse.add(instance);
+        }
+        return instance;
+    }
+
+    public synchronized void checkIn(T instance) {
+        available.add(instance);
     }
 
     @Override
-    public T get() {
-        if (!shutdown) {
-            T t = null;
-
-            try {
-                t = pool.take();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            return t;
-        }
-
-        throw new IllegalStateException("Object pool is already shutdown.");
-    }
-
-    @Override
-    public void release(T t) {
-        try {
-            pool.offer(t);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void shutdown() {
-        pool.clear();
-    }
-
-    public int size() {
-        return pool.size();
-    }
-
-    public BlockingQueue<T> getPool() {
-        return pool;
+    public synchronized String toString() {
+        return String.format("Pool available=%d inUse=%d", available.size(), inUse.size());
     }
 }

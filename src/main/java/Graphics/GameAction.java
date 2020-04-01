@@ -1,67 +1,51 @@
 package main.java.Graphics;
 
-import main.java.Logic.GameState;
 import main.java.Logic.Mapper;
-import main.java.Util.Vector2D;
 
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
-public class GameAction implements MouseMotionListener, MouseListener {
+public class GameAction implements KeyListener {
+
+    private Timer up,right,left, down,shoot;
 
     private final GamePanel gamePanel;
+    private final Mapper mapper;
 
-    public GameAction(GamePanel gamePanel) {
+
+    GameAction(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
+        this.mapper = Mapper.getInstance();
         this.init();
     }
 
     private void init() {
-
-        this.hideCursor();
-
-        this.gamePanel.addMouseListener(this);
-        this.gamePanel.addMouseMotionListener(this);
-
+        this.defineTimers();
+        gamePanel.addKeyListener(this);
+        hideCursor();
     }
 
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        Mapper.shootBullet(new Vector2D(e.getX(), e.getY()));
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        Mapper.moveSpaceShip(new Vector2D(e.getX(), e.getY()));
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        Mapper.moveSpaceShip(new Vector2D(e.getX(), e.getY()));
+    private void defineTimers() {
+        ActionListener l = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mapper.addRequest(Mapper.RequestType.SPACESHIP_MOVE_LEFT);
+            }
+        };
+        left = new Timer(10, l);
+        ActionListener r = e -> mapper.addRequest(Mapper.RequestType.SPACESHIP_MOVE_RIGHT);
+        right = new Timer(10, r);
+        ActionListener d = e -> mapper.addRequest(Mapper.RequestType.SPACESHIP_MOVE_DOWN);
+        down = new Timer(10, d);
+        ActionListener u = e -> mapper.addRequest(Mapper.RequestType.SPACESHIP_MOVE_UP);
+        up = new Timer(10, u);
+        ActionListener s = e -> mapper.addRequest(Mapper.RequestType.SPACESHIP_SHOOT_BULLET);
+        shoot = new Timer(120 , s);
     }
 
     private void hideCursor() {
@@ -73,4 +57,62 @@ public class GameAction implements MouseMotionListener, MouseListener {
 
         this.gamePanel.setCursor(cursor);
     }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    private void createRequest(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_SPACE:
+                shoot.start();
+                break;
+            case KeyEvent.VK_LEFT:
+                left.start();
+                break;
+            case KeyEvent.VK_RIGHT:
+                right.start();
+                break;
+            case KeyEvent.VK_DOWN:
+                down.start();
+                break;
+            case KeyEvent.VK_UP:
+                up.start();
+                break;
+        }
+    }
+
+    private void stopRequest(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_SPACE:
+                shoot.stop();
+                break;
+            case KeyEvent.VK_LEFT:
+                left.stop();
+                break;
+            case KeyEvent.VK_RIGHT:
+                right.stop();
+                break;
+            case KeyEvent.VK_DOWN:
+                down.stop();
+                break;
+            case KeyEvent.VK_UP:
+                up.stop();
+                break;
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        createRequest(e);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        stopRequest(e);
+    }
+
+
+
 }

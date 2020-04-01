@@ -1,62 +1,109 @@
 package main.java.Logic;
 
-import main.java.Models.Asteroid;
-import main.java.Models.AsteroidGroup;
-import main.java.Models.Bullet;
+import main.java.Intefaces.Request;
 import main.java.Models.SpaceShip;
-import main.java.Util.ObjectPool;
 import main.java.Util.Vector2D;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Mapper {
 
-    private static GameState gameState = new GameState();
+    private static Mapper instance = new Mapper();
 
-    public static void shootBullet(Vector2D position) {
-        gameState.getPlayer().getShip().shootBullet(position);
+
+    private static GameState gameState;
+    private ArrayList<Request> requests;
+
+
+    private Mapper() {
+        requests = new ArrayList<>();
+        gameState = new GameState();
     }
 
-    public static void moveSpaceShip(Vector2D newPosition) {
-        gameState.getPlayer().getShip().setPosition(new Vector2D(newPosition.getX(), newPosition.getY()));
+    private static void moveSpaceShip(Vector2D newPosition) {
+        gameState.getPlayer().getSpaceShip().setPosition(new Vector2D(newPosition.getX(), newPosition.getY()));
     }
 
-    //this method examined collision between spaceShip and asteroids
-    static boolean checkSpaceShipCollisions(SpaceShip spaceShip, ObjectPool<Asteroid> objectPool) {
+    private static void shootBullet() {
+        SpaceShip spaceShip = gameState.getPlayer().getSpaceShip();
+        spaceShip.shootBullet();
+    }
 
-        for (Asteroid asteroid : objectPool.getPool()) {
-            if (asteroid.getBox().intersects(spaceShip.getBox())) {
-                return true;
+    private static void spaceShipMoveRight() {
+        SpaceShip spaceShip = gameState.getPlayer().getSpaceShip();
+        spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX() + spaceShip.getSpeedX(), spaceShip.getPosition().getY()));
+    }
+
+    private static void spaceShipMoveLeft() {
+        SpaceShip spaceShip = gameState.getPlayer().getSpaceShip();
+        spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX() - spaceShip.getSpeedX(), spaceShip.getPosition().getY()));
+    }
+
+    private static void spaceShipMoveUp() {
+        SpaceShip spaceShip = gameState.getPlayer().getSpaceShip();
+        spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX(), spaceShip.getPosition().getY() - spaceShip.getSpeedY()));
+    }
+
+    private static void spaceShipMoveDown() {
+        SpaceShip spaceShip = gameState.getPlayer().getSpaceShip();
+        spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX(), spaceShip.getPosition().getY() + spaceShip.getSpeedY()));
+    }
+
+    public void addRequest(RequestType requestType) {
+        if (requestType != null)
+            requests.add(requestType);
+    }
+
+    public ArrayList<Request> getRequests() {
+        return requests;
+    }
+
+    public void executeRequests() {
+        for (Iterator<Request> requestIterator = requests.iterator(); requestIterator.hasNext(); ) {
+            Request request = requestIterator.next();
+            request.execute();
+            requestIterator.remove();
+        }
+    }
+
+    public enum RequestType implements Request {
+
+        SPACESHIP_SHOOT_BULLET {
+            @Override
+            public void execute() {
+                shootBullet();
+            }
+        },
+        SPACESHIP_MOVE_RIGHT {
+            @Override
+            public void execute() {
+                spaceShipMoveRight();
+            }
+        }, SPACESHIP_MOVE_LEFT {
+            @Override
+            public void execute() {
+                spaceShipMoveLeft();
+            }
+        }, SPACESHIP_MOVE_UP {
+            @Override
+            public void execute() {
+                spaceShipMoveUp();
+            }
+        }, SPACESHIP_MOVE_DOWN {
+            @Override
+            public void execute() {
+                spaceShipMoveDown();
             }
         }
 
-        return false;
     }
 
-    //this method examined collision between spaceShip.bullets and asteroids
-    static void checkBulletsCollision(SpaceShip spaceShip, AsteroidGroup asteroidGroup) {
-        for (Iterator<Bullet> bulletIterator = spaceShip.getBullets().iterator(); bulletIterator.hasNext(); ) {
-            Bullet bullet = bulletIterator.next();
-
-            for (Iterator<Asteroid> asteroidIterator = asteroidGroup.getAsteroidPool().getPool().iterator(); asteroidIterator.hasNext(); ) {
-                Asteroid asteroid = asteroidIterator.next();
-
-                if (bullet.getBox().intersects(asteroid.getBox())) {
-
-                }
-            }
-        }
+    public static GameState getGameState() {
+        return gameState;
     }
 
-    public static boolean isGameOver() {
-        return gameState.isGameOver();
-    }
-
-    public static SpaceShip getSpaceShip() {
-        return gameState.getPlayer().getShip();
-    }
-
-    public static ObjectPool getAsteroids() {
-        return gameState.getAsteroidGroup().getAsteroidPool();
+    public static Mapper getInstance() {
+        return instance;
     }
 }

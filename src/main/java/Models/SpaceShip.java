@@ -1,30 +1,33 @@
 package main.java.Models;
 
-import main.java.Util.MyComponent;
+import main.java.Util.BulletsObjectPool;
+import main.java.Util.ConfigLoader;
 import main.java.Util.SoundPlayer;
-import main.java.Util.Urls;
 import main.java.Util.Vector2D;
-
-import java.util.ArrayList;
 
 public class SpaceShip extends MyComponent {
 
-    private ArrayList<Bullet> bullets = new ArrayList<>();
+
+    private BulletsObjectPool bulletsObjectPool;
 
 
-    public SpaceShip(Vector2D position) {
+    SpaceShip(Vector2D position) {
         super(position, 50, 5, 5, "spaceship");
     }
 
 
-    public void shootBullet(Vector2D position) {
-        SoundPlayer.play(Urls.RESOURCE_URL + "Sound\\laser.wav");
-
-        this.bullets.add(new Bullet(position));
+    public void shootBullet() {
+        SoundPlayer.play(ConfigLoader.getInstance("default").getAddress("RESOURCE_URL") + "Sound/laser.wav");
+        bulletsObjectPool.checkOut().setPosition(this.getPosition());
     }
 
-    public ArrayList<Bullet> getBullets() {
-        return bullets;
+    public BulletsObjectPool getBulletsObjectPool() {
+        return bulletsObjectPool;
     }
+
+    public void setBulletsObjectPool(BulletsObjectPool bulletsObjectPool) {
+        this.bulletsObjectPool = bulletsObjectPool;
+    }
+
 
 }
