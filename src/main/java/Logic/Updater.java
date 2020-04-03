@@ -5,6 +5,7 @@ import main.java.Models.Asteroid;
 import main.java.Models.Bullet;
 import main.java.Models.SpaceShip;
 //import main.java.Util.Constants;
+import main.java.UserInterfaces.Mapper;
 import main.java.Util.GameConstants;
 
 import java.util.List;

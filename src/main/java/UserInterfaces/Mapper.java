@@ -1,6 +1,7 @@
-package main.java.Logic;
+package main.java.UserInterfaces;
 
 import main.java.Intefaces.Request;
+import main.java.Logic.GameState;
 import main.java.Models.SpaceShip;
 import main.java.Util.Vector2D;
 

@@ -1,4 +1,4 @@
-package main.java.Graphics;
+package main.java.UserInterfaces.SwingGUI;
 
 import main.java.Util.FrameConfig;
 

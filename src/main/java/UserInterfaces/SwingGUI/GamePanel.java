@@ -1,8 +1,8 @@
-package main.java.Graphics;
+package main.java.UserInterfaces.SwingGUI;
 
 import main.java.Intefaces.Updatable;
-import main.java.Logic.Mapper;
 import main.java.Logic.Updater;
+import main.java.UserInterfaces.Mapper;
 import main.java.Util.ImageLoader;
 import main.java.Util.PanelConfig;
 

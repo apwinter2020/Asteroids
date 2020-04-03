@@ -1,4 +1,4 @@
-package main.java.Graphics;
+package main.java.UserInterfaces.SwingGUI;
 
 //import main.java.Util.Constants;
 
@@ -7,7 +7,6 @@ import main.java.Models.Asteroid;
 import main.java.Models.Bullet;
 import main.java.Models.MyComponent;
 import main.java.Models.SpaceShip;
-import main.java.Util.ConfigLoader;
 import main.java.Util.GameConstants;
 
 import java.awt.*;
