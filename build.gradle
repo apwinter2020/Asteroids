@@ -7,11 +7,14 @@
  */
 
 plugins {
+    id 'application'
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
     id 'eclipse'
     id 'idea'
 }
+
+mainClassName = "ir.sharif.math.ap98.asteroid.Main"
 
 repositories {
     // Use jcenter for resolving dependencies.
