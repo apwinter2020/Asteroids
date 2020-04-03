@@ -1,17 +1,16 @@
-package main.java.Graphics;
+package main.java.UserInterfaces.SwingGUI;
 
 import main.java.Intefaces.Updatable;
-import main.java.Logic.Mapper;
 import main.java.Logic.Updater;
-import main.java.Util.ConfigLoader;
+import main.java.UserInterfaces.Mapper;
 import main.java.Util.ImageLoader;
+import main.java.Util.PanelConfig;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.util.Properties;
 
 
 public class GamePanel extends JPanel implements Updatable {
@@ -21,6 +20,8 @@ public class GamePanel extends JPanel implements Updatable {
     private Mapper mapper;
     private GameAction gameAction;
     private BufferedImage bgImage;
+    private PanelConfig config;
+
 
     private int bgImageX;
     private int bgImageY;
@@ -41,6 +42,8 @@ public class GamePanel extends JPanel implements Updatable {
         updater = new Updater();
         mapper = Mapper.getInstance();
         gameAction = new GameAction(this);
+        config = new PanelConfig("GAMEPANEL_CONFIG_FILE");
+
         configurePanel();
     }
 
@@ -56,19 +59,15 @@ public class GamePanel extends JPanel implements Updatable {
 
     private void configurePanel() {
 
-//        try (Scanner input = new Scanner(new File(Urls.createUrls("default").getProperty("GAMEPANEL_CONFIG_FILE")))) {
-        Properties properties = ConfigLoader.getInstance("default").getProperties("GAMEPANEL_CONFIG_FILE");
+        this.bgImage = ImageLoader.getInstance().loadImage(config.getBgImage());
+        this.bgImageX = config.getBgImageX();
+        this.bgImageY = config.getBgImageY();
+        this.bgImageSpeedX = config.getBgImageSpeedX();
+        this.bgImageSpeedY = config.getBgImageSpeedY();
+        this.coefficient = config.getCoefficient();
+        this.timeCounter = config.getTimeCounter();
 
-        this.bgImage = ImageLoader.getInstance().loadImage(properties.getProperty("bgImage"));
-        this.bgImageX = Integer.parseInt(properties.getProperty("bgImageX"));
-        this.bgImageY = Integer.parseInt(properties.getProperty("bgImageY"));
-        this.bgImageSpeedX = Integer.parseInt(properties.getProperty("bgImageSpeedX"));
-        this.bgImageSpeedY = Integer.parseInt(properties.getProperty("bgImageSpeedY"));
-        this.coefficient = Integer.parseInt(properties.getProperty("coefficient"));
-        this.timeCounter = Integer.parseInt(properties.getProperty("timeCounter"));
-
-        this.setSize(Integer.parseInt(properties.getProperty("width")), Integer.parseInt(properties.getProperty("height")));
-
+        this.setSize(config.getWidth(), config.getHeight());
     }
 
     @Override
@@ -111,7 +110,7 @@ public class GamePanel extends JPanel implements Updatable {
         updater.update();
     }
 
-    public void draw() {
+    private void draw() {
         repaint();
         revalidate();
     }

@@ -1,13 +1,10 @@
 package main.java;
 
-import main.java.Graphics.GamePanel;
-import main.java.Graphics.MainFrame;
+import main.java.UserInterfaces.SwingGUI.GamePanel;
+import main.java.UserInterfaces.SwingGUI.MainFrame;
 import main.java.Util.ConfigLoader;
 //import main.java.Util.Urls;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Properties;
 
 public class Main {
 

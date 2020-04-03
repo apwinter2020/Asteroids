@@ -5,25 +5,23 @@ import main.java.Models.Asteroid;
 import main.java.Models.Bullet;
 import main.java.Models.SpaceShip;
 //import main.java.Util.Constants;
-import main.java.Util.ConfigLoader;
-import main.java.Util.IntegerProperties;
-import main.java.Util.Vector2D;
+import main.java.UserInterfaces.Mapper;
+import main.java.Util.GameConstants;
 
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Properties;
 import java.util.Random;
 
 public class Updater implements Updatable {
 
     private GameState gameState;
     private Random random;
-    private IntegerProperties constants;
+    private GameConstants constants;
 
     public Updater() {
         gameState = Mapper.getInstance().getGameState();
         random = new Random();
-        constants = ConfigLoader.getInstance("default").getProperties("Constants");
+        constants = GameConstants.getInstance();
     }
 
     @Override
@@ -78,7 +76,7 @@ public class Updater implements Updatable {
             ListIterator<Asteroid> listIterator = asteroids.listIterator();
             while (listIterator.hasNext()) {
                 Asteroid asteroid = listIterator.next();
-                if (asteroid.getPosition().getY() > constants.readInteger("maxHeight")) {
+                if (asteroid.getPosition().getY() > constants.getConstant("maxHeight")) {
                     listIterator.remove();
                     gameState.checkInAsteroid(asteroid);
                 } else {
@@ -90,7 +88,7 @@ public class Updater implements Updatable {
     }
 
     private void startWave() {
-        for (int i = 0; i < constants.readInteger("asteroidNumber"); i++) {
+        for (int i = 0; i < constants.getConstant("asteroidNumber"); i++) {
             gameState.checkOutAsteroid();
         }
     }

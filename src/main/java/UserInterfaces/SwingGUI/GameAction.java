@@ -1,6 +1,6 @@
-package main.java.Graphics;
+package main.java.UserInterfaces.SwingGUI;
 
-import main.java.Logic.Mapper;
+import main.java.UserInterfaces.Mapper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,21 +31,11 @@ public class GameAction implements KeyListener {
     }
 
     private void defineTimers() {
-        ActionListener l = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mapper.addRequest(Mapper.RequestType.SPACESHIP_MOVE_LEFT);
-            }
-        };
-        left = new Timer(10, l);
-        ActionListener r = e -> mapper.addRequest(Mapper.RequestType.SPACESHIP_MOVE_RIGHT);
-        right = new Timer(10, r);
-        ActionListener d = e -> mapper.addRequest(Mapper.RequestType.SPACESHIP_MOVE_DOWN);
-        down = new Timer(10, d);
-        ActionListener u = e -> mapper.addRequest(Mapper.RequestType.SPACESHIP_MOVE_UP);
-        up = new Timer(10, u);
-        ActionListener s = e -> mapper.addRequest(Mapper.RequestType.SPACESHIP_SHOOT_BULLET);
-        shoot = new Timer(120 , s);
+        left = new Timer(10, new MyActionListener(Mapper.RequestType.SPACESHIP_MOVE_LEFT));
+        right = new Timer(10, new MyActionListener(Mapper.RequestType.SPACESHIP_MOVE_RIGHT));
+        up = new Timer(10, new MyActionListener(Mapper.RequestType.SPACESHIP_MOVE_UP));
+        down = new Timer(10, new MyActionListener(Mapper.RequestType.SPACESHIP_MOVE_DOWN));
+        shoot = new Timer(120 , new MyActionListener(Mapper.RequestType.SPACESHIP_SHOOT_BULLET));
     }
 
     private void hideCursor() {
@@ -114,5 +104,22 @@ public class GameAction implements KeyListener {
     }
 
 
+}
 
+class MyActionListener implements ActionListener {
+
+    private Mapper.RequestType requestType;
+
+    MyActionListener(Mapper.RequestType requestType) {
+        this.requestType = requestType;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Mapper.getInstance().addRequest(this.getRequestType());
+    }
+
+    private Mapper.RequestType getRequestType() {
+        return requestType;
+    }
 }
