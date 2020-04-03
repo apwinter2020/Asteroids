@@ -73,9 +73,12 @@ public class GamePanel extends JPanel implements Updatable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (drawer == null) drawer = new Drawer((Graphics2D) g);
-        drawer.setGraphics2D((Graphics2D) g);
-        paintGamePanel((Graphics2D) g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        if (drawer == null) drawer = new Drawer(g2d);
+        drawer.setGraphics2D(g2d);
+        paintGamePanel(g2d);
     }
 
     private void paintGamePanel(Graphics2D graphics2D) {

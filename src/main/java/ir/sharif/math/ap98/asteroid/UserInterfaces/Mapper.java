@@ -8,6 +8,7 @@ import ir.sharif.math.ap98.asteroid.Models.SpaceShip;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import ir.sharif.math.ap98.asteroid.Util.GameConstants;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
 public class Mapper {
@@ -17,11 +18,14 @@ public class Mapper {
 
     private static GameState gameState;
     private ArrayList<Request> requests;
+    private static GameConstants constants;
 
 
     private Mapper() {
         requests = new ArrayList<>();
         gameState = new GameState();
+        constants = GameConstants.getInstance();
+
     }
 
     private static void moveSpaceShip(Vector2D newPosition) {
@@ -35,22 +39,35 @@ public class Mapper {
 
     private static void spaceShipMoveRight() {
         SpaceShip spaceShip = gameState.getPlayer().getSpaceShip();
-        spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX() + spaceShip.getSpeedX(), spaceShip.getPosition().getY()));
+        if (spaceShip.getPosition().getX() + constants.getConstant("shipSize") < constants.getConstant("maxWidth")) {
+            spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX() + spaceShip.getSpeedX(),
+                    spaceShip.getPosition().getY()));
+        }
     }
 
     private static void spaceShipMoveLeft() {
         SpaceShip spaceShip = gameState.getPlayer().getSpaceShip();
-        spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX() - spaceShip.getSpeedX(), spaceShip.getPosition().getY()));
+        if (spaceShip.getPosition().getX() > 0) {
+            spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX() - spaceShip.getSpeedX(),
+                    spaceShip.getPosition().getY()));
+        }
     }
 
     private static void spaceShipMoveUp() {
         SpaceShip spaceShip = gameState.getPlayer().getSpaceShip();
-        spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX(), spaceShip.getPosition().getY() - spaceShip.getSpeedY()));
+        if (spaceShip.getPosition().getY() > 0) {
+            spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX(),
+                    spaceShip.getPosition().getY() - spaceShip.getSpeedY()));
+        }
     }
 
     private static void spaceShipMoveDown() {
         SpaceShip spaceShip = gameState.getPlayer().getSpaceShip();
-        spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX(), spaceShip.getPosition().getY() + spaceShip.getSpeedY()));
+        if (spaceShip.getPosition().getY()
+                + 2 * constants.getConstant("shipSize") < constants.getConstant("maxHeight")) {
+            spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX(),
+                    spaceShip.getPosition().getY() + spaceShip.getSpeedY()));
+        }
     }
 
     public void addRequest(RequestType requestType) {

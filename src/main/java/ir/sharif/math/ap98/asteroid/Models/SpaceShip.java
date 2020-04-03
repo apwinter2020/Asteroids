@@ -1,5 +1,6 @@
 package ir.sharif.math.ap98.asteroid.Models;
 
+import ir.sharif.math.ap98.asteroid.Util.GameConstants;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
 import ir.sharif.math.ap98.asteroid.Util.BulletsObjectPool;
@@ -14,7 +15,8 @@ public class SpaceShip extends MyComponent {
 
 
     SpaceShip(Vector2D position) {
-        super(position, 50, 5, 5, "spaceship");
+        super(position, GameConstants.getInstance().getConstant("shipSize"),
+                5, 5, "spaceship");
     }
 
 

@@ -29,7 +29,8 @@ public class Player implements Serializable {
         this.id = id;
         constants = GameConstants.getInstance();
 
-        this.ship = new SpaceShip(new Vector2D(constants.getConstant("maxWidth") / 2 - 25, constants.getConstant("maxHeight") / 2 + 200));
+        this.ship = new SpaceShip(new Vector2D(constants.getConstant("maxWidth") / 2 - 25,
+                constants.getConstant("maxHeight") / 2 + 200));
 
     }
 

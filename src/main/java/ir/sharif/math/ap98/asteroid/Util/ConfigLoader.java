@@ -12,7 +12,6 @@ public class ConfigLoader {
     private static ConfigLoader loader;
     private String addressName;
     private HashMap<String, Configs> addressess;
-    ///ir/sharif/math/ap98/asteroid/configFiles/logicConfigFiles/
     private static String defaultAddress = "src/main/resources/ir/sharif/math/ap98/asteroid/configFiles/LogicConfigFiles/MainConfigFile.properties";
     private HashMap<String, Configs> constants;
     private HashMap<String, Configs> frameConfigs;
@@ -50,7 +49,6 @@ public class ConfigLoader {
 
     private void loadProperties() {
         Set<Entry<Object, Object>> entries = addressess.get("RESOURCE_URL").entrySet();
-//        System.out.println(entries);
         for (Entry entry : entries) {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
@@ -78,7 +76,6 @@ public class ConfigLoader {
                 if (lowerCase.contains("frame")) {
                     System.out.println("frame added : " + key);
                     frameConfigs.put(key, property);
-//                    break;
                 } else if (lowerCase.contains("panel")) {
                     System.out.println("panels added : " + key);
                     panelConfigs.put(key, property);
