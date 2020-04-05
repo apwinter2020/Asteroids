@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/jar files/gson-2.2.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/src/main/resources/ir/sharif/math/ap98/asteroid/jarFiles/commons-math3-3.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

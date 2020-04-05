@@ -1,0 +1,128 @@
+package main.java.ir.sharif.math.ap98.asteroid.UserInterfaces;
+
+
+import main.java.ir.sharif.math.ap98.asteroid.Intefaces.Request;
+import main.java.ir.sharif.math.ap98.asteroid.Logic.GameState;
+import main.java.ir.sharif.math.ap98.asteroid.Models.SpaceShip;
+import main.java.ir.sharif.math.ap98.asteroid.Util.GameConstants;
+import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Mapper {
+
+    private static Mapper instance = new Mapper();
+
+
+    private static GameState gameState;
+    private ArrayList<Request> requests;
+    private static GameConstants constants;
+
+
+    private Mapper() {
+        requests = new ArrayList<>();
+        gameState = new GameState();
+        constants = GameConstants.getInstance();
+
+    }
+
+    private static void moveSpaceShip(Vector2D newPosition) {
+        gameState.getPlayer().getSpaceShip().setPosition(new Vector2D(newPosition.getX(), newPosition.getY()));
+    }
+
+    private static void shootBullet() {
+        SpaceShip spaceShip = gameState.getPlayer().getSpaceShip();
+        spaceShip.shootBullet();
+    }
+
+    private static void spaceShipMoveRight() {
+        SpaceShip spaceShip = gameState.getPlayer().getSpaceShip();
+        if (spaceShip.getPosition().getX() + constants.getConstant("shipSize") < constants.getConstant("maxWidth")) {
+            spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX() + spaceShip.getSpeedX(),
+                    spaceShip.getPosition().getY()));
+        }
+    }
+
+    private static void spaceShipMoveLeft() {
+        SpaceShip spaceShip = gameState.getPlayer().getSpaceShip();
+        if (spaceShip.getPosition().getX() > 0) {
+            spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX() - spaceShip.getSpeedX(),
+                    spaceShip.getPosition().getY()));
+        }
+    }
+
+    private static void spaceShipMoveUp() {
+        SpaceShip spaceShip = gameState.getPlayer().getSpaceShip();
+        if (spaceShip.getPosition().getY() > 0) {
+            spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX(),
+                    spaceShip.getPosition().getY() - spaceShip.getSpeedY()));
+        }
+    }
+
+    private static void spaceShipMoveDown() {
+        SpaceShip spaceShip = gameState.getPlayer().getSpaceShip();
+        if (spaceShip.getPosition().getY()
+                + 2 * constants.getConstant("shipSize") < constants.getConstant("maxHeight")) {
+            spaceShip.setPosition(new Vector2D(spaceShip.getPosition().getX(),
+                    spaceShip.getPosition().getY() + spaceShip.getSpeedY()));
+        }
+    }
+
+    public void addRequest(RequestType requestType) {
+        if (requestType != null)
+            requests.add(requestType);
+    }
+
+    public ArrayList<Request> getRequests() {
+        return requests;
+    }
+
+    public void executeRequests() {
+        for (Iterator<Request> requestIterator = requests.iterator(); requestIterator.hasNext(); ) {
+            Request request = requestIterator.next();
+            request.execute();
+            requestIterator.remove();
+        }
+    }
+
+    public enum RequestType implements Request {
+
+        SPACESHIP_SHOOT_BULLET {
+            @Override
+            public void execute() {
+                shootBullet();
+            }
+        },
+        SPACESHIP_MOVE_RIGHT {
+            @Override
+            public void execute() {
+                spaceShipMoveRight();
+            }
+        }, SPACESHIP_MOVE_LEFT {
+            @Override
+            public void execute() {
+                spaceShipMoveLeft();
+            }
+        }, SPACESHIP_MOVE_UP {
+            @Override
+            public void execute() {
+                spaceShipMoveUp();
+            }
+        }, SPACESHIP_MOVE_DOWN {
+            @Override
+            public void execute() {
+                spaceShipMoveDown();
+            }
+        }
+
+    }
+
+    public static GameState getGameState() {
+        return gameState;
+    }
+
+    public static Mapper getInstance() {
+        return instance;
+    }
+}
