@@ -6,7 +6,6 @@ This code sample is made to serve as well designed, good and clean coded game in
 The code has implemented the following [design patterns](https://sourcemaking.com/design_patterns)
 * [Singleton](https://www.javatpoint.com/singleton-design-pattern-in-java)
 * [Factory](https://www.tutorialsteacher.com/ioc/dependency-injection)
-* [Dependency Injection](https://sourcemaking.com/design_patterns)
 * [Object Pool](https://www.javatpoint.com/object-pool-pattern)
 
 There might also be some minor implementations of other design patterns.
@@ -22,10 +21,12 @@ While creating the project the following principals were considered:
 
 These five principals are called the [**S.O.L.I.D**](https://scotch.io/bar-talk/s-o-l-i-d-the-first-five-principles-of-object-oriented-design)  principles of object oriented design.
 
+Bring the parameters of the program outside the code by using config loaders. It decouples the dependency of the code and its parameters and makes the customization of the program without compilation more convenient for the users and developers. In addition it packs up the related parameters inside some related config files to be accessed faster.
+
 # UML
 [Here](https://drive.google.com/open?id=1PeKLyWMS4hKkeFq1DXovTvYq6-yNF8Pa) is the **uml** of the game.
 
-you can lean about uml's  [here](https://faranesh.com/blog/uml-tutorial)
+you can learn about uml's  [here](https://faranesh.com/blog/uml-tutorial)
 
 
 
