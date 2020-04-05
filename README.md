@@ -23,9 +23,8 @@ While creating the project the following principals were considered:
 These five principals are called the [**S.O.L.I.D**](https://scotch.io/bar-talk/s-o-l-i-d-the-first-five-principles-of-object-oriented-design)  principles of object oriented design.
 
 # UML
-Here is the **uml** of the game:
+[Here](https://drive.google.com/open?id=1PeKLyWMS4hKkeFq1DXovTvYq6-yNF8Pa) is the **uml** of the game.
 
-![uml](UmlAsteroid.jpg)
 you can lean about uml's  [here](https://faranesh.com/blog/uml-tutorial)
 
 
