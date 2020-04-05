@@ -21,6 +21,9 @@ public class Player implements Serializable {
     private GameConstants constants;
 
 
+
+
+
     public Player(String username, String password, String id) {
 
         this.username = username;
