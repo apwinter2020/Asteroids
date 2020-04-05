@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e1bbde3-eb79-499a-91a9-e3559866b657" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/UserInterfaces/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/UserInterfaces/Mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,7 +69,11 @@
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/ir/sharif/math/ap98/asteroid/configFiles/LogicConfigFiles/ConstantsConfigFile.properties">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -224,75 +228,6 @@
             <path>
               <item name="Asteroid" type="b2602c69:ProjectViewProjectNode" />
               <item name="Asteroid" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Asteroid" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Asteroid" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Asteroid" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Asteroid" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Asteroid" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Asteroid" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="asteroid" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Asteroid" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Asteroid" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="asteroid" type="462c0819:PsiDirectoryNode" />
-              <item name="UserInterfaces" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Asteroid" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Asteroid" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="asteroid" type="462c0819:PsiDirectoryNode" />
-              <item name="UserInterfaces" type="462c0819:PsiDirectoryNode" />
-              <item name="SwingGUI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Asteroid" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Asteroid" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="asteroid" type="462c0819:PsiDirectoryNode" />
-              <item name="UserInterfaces" type="462c0819:PsiDirectoryNode" />
-              <item name="SwingGUI" type="462c0819:PsiDirectoryNode" />
-              <item name="GameAction.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="Asteroid" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Asteroid" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="asteroid" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Asteroid" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Asteroid" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="asteroid" type="462c0819:PsiDirectoryNode" />
-              <item name="configFiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Asteroid" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Asteroid" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="asteroid" type="462c0819:PsiDirectoryNode" />
-              <item name="configFiles" type="462c0819:PsiDirectoryNode" />
-              <item name="LogicConfigFiles" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -578,7 +513,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586109238135</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="add .gitignore file">
+      <created>1586109789651</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1586109789651</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -670,7 +612,8 @@
     <MESSAGE value="change packaging&#10;add MyActionListener in GameAction" />
     <MESSAGE value="without gradle version" />
     <MESSAGE value="gradle removed" />
-    <option name="LAST_COMMIT_MESSAGE" value="gradle removed" />
+    <MESSAGE value="add .gitignore file" />
+    <option name="LAST_COMMIT_MESSAGE" value="add .gitignore file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -810,7 +753,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/ir/sharif/math/ap98/asteroid/configFiles/LogicConfigFiles/ConstantsConfigFile.properties">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="gradleExecuteTaskHistory">
