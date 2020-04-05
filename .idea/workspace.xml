@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e1bbde3-eb79-499a-91a9-e3559866b657" name="Default Changelist" comment="without gradle version">
+    <list default="true" id="2e1bbde3-eb79-499a-91a9-e3559866b657" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/Models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/Models/Player.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,8 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/Models/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="575">
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -44,17 +43,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/UserInterfaces/SwingGUI/Drawer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="50" column="52" lean-forward="true" selection-start-line="50" selection-start-column="52" selection-end-line="50" selection-end-column="52" />
+            <state relative-caret-position="1050">
+              <caret line="50" column="52" selection-start-line="50" selection-start-column="52" selection-end-line="50" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/UserInterfaces/SwingGUI/GameAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="62">
+              <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/UserInterfaces/SwingGUI/GameAction.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/UserInterfaces/Mapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1017">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="175">
+              <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/util/ArrayList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="495" column="19" selection-start-line="495" selection-start-column="19" selection-end-line="495" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -128,7 +145,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/Models/Update.java" />
         <option value="$PROJECT_DIR$/src/main/java/Intefaces/Movable.java" />
         <option value="$PROJECT_DIR$/src/main/java/Logic/ConstanceConfigFile" />
         <option value="$PROJECT_DIR$/resources/configFiles/ConstantsConfigFile" />
@@ -179,6 +195,7 @@
         <option value="$PROJECT_DIR$/src/main/java/Util/FrameConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/Models/Player.kt" />
         <option value="$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/Models/Player.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/UserInterfaces/Mapper.java" />
       </list>
     </option>
   </component>
@@ -194,8 +211,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -511,13 +528,28 @@
       <option name="project" value="LOCAL" />
       <updated>1585901159010</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="without gradle version">
+      <created>1586105926849</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1586105926849</updated>
+    </task>
+    <task id="LOCAL-00020" summary="without gradle version">
+      <created>1586108150920</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1586108150920</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49791667" visible="true" weight="0.2181208" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49791667" visible="true" weight="0.22147651" />
       <window_info id="Structure" order="1" sideWeight="0.50208336" side_tool="true" weight="0.1704698" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -528,13 +560,13 @@
       <window_info id="simpleUML" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49731544" weight="0.35335195" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49530202" weight="0.4162011" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" weight="0.39944133" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49597314" visible="true" weight="0.33938548" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50402683" side_tool="true" visible="true" weight="0.33938548" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49328858" visible="true" weight="0.58519554" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5067114" side_tool="true" visible="true" weight="0.58519554" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49530202" weight="0.19692737" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49798658" weight="0.32681563" />
       <window_info anchor="bottom" id="GitHub Pull Requests" order="11" sideWeight="0.49932885" weight="0.32960895" />
@@ -621,7 +653,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/Util/JsonHandler.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Logic/s.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Intefaces/Request.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Models/SpaceShip.java" />
@@ -654,9 +685,6 @@
     <entry file="file://$PROJECT_DIR$/build.gradle" />
     <entry file="file://$PROJECT_DIR$/../Asteroid-527c5a4806dffa9451b85a27e49718b3b3925b8a/src/main/java/Graphics/Drawer.java" />
     <entry file="file://$PROJECT_DIR$/out/production/Asteroid/main/java/ir/sharif/math/ap98/asteroid/Main.class" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/UserInterfaces/Mapper.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/Models/Asteroid.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -710,8 +738,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/Models/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="575">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -720,15 +748,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/UserInterfaces/SwingGUI/Drawer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="50" column="52" lean-forward="true" selection-start-line="50" selection-start-column="52" selection-end-line="50" selection-end-column="52" />
+        <state relative-caret-position="1050">
+          <caret line="50" column="52" selection-start-line="50" selection-start-column="52" selection-end-line="50" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/UserInterfaces/SwingGUI/GameAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1017">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state relative-caret-position="62">
+          <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="495" column="19" selection-start-line="495" selection-start-column="19" selection-end-line="495" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ir/sharif/math/ap98/asteroid/UserInterfaces/Mapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
         </state>
       </provider>
     </entry>
